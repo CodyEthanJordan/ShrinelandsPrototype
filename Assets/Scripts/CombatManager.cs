@@ -9,10 +9,16 @@ public class CombatManager : MonoBehaviour
     public DungeonMaster DM;
     public Tilemap tileMap;
     public Tile basicTile;
+
+    public TextAsset text;
     // Start is called before the first frame update
     void Start()
     {
-        DM = new DungeonMaster();
+        var data = GameData.CreateFromJson(text.text);
+        DM = new DungeonMaster(data);
+
+        ShrinelandsTactics.World.Tile t = new ShrinelandsTactics.World.Tile("test");
+        Debug.Log(t.json);
 
         tileMap.ClearAllTiles();
         tileMap.SetTile(Vector3Int.zero, basicTile);
