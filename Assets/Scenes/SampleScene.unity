@@ -152,6 +152,8 @@ MonoBehaviour:
   tileMap: {fileID: 854589609}
   emptyTile: {fileID: 11400000, guid: e6c04a3ed2b1a7f4cbd166bd70963fc3, type: 2}
   wallTile: {fileID: 11400000, guid: 2bf78c4036268ba46aaa142b43fd4774, type: 2}
+  characterPrefab: {fileID: 790654962466376137, guid: 847ddb3c1df45c14fb8926af57b970e4,
+    type: 3}
   characterJson: {fileID: 4900000, guid: 8d22a3f0ebfb61e4b86a31effd002ded, type: 3}
   tileJson: {fileID: 4900000, guid: 775dd366af0792e4d9591d3f093f44d7, type: 3}
   actionJson: {fileID: 4900000, guid: 73d7c484fa771a940a6bcf9a576b003a, type: 3}
@@ -364,8 +366,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1476066487
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
