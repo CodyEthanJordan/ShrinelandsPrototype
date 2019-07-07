@@ -76,6 +76,11 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    public void SetupUnits()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
