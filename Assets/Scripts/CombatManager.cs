@@ -70,11 +70,11 @@ namespace Assets.Scripts
                     var tile = DM.map.GetTile(x, y);
                     if (tile.Passable)
                     {
-                        tileMap.SetTile(new Vector3Int(x, DM.map.Height - y, 0), emptyTile);
+                        tileMap.SetTile(new Vector3Int(x, y, 0), emptyTile);
                     }
                     else
                     {
-                        tileMap.SetTile(new Vector3Int(x, DM.map.Height - y, 0), wallTile);
+                        tileMap.SetTile(new Vector3Int(x, y, 0), wallTile);
                     }
                 }
             }
