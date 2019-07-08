@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 using YamlDotNet.RepresentationModel;
 using System.IO;
 using System.Text;
+using Assets.Scripts.FSM;
+using Assets.Scripts.Events;
 
 namespace Assets.Scripts
 {
@@ -13,6 +15,7 @@ namespace Assets.Scripts
     {
         public DungeonMaster DM;
         public Tilemap tileMap;
+        public Tilemap overlayMap;
         public Tile emptyTile;
         public Tile wallTile;
         public GameObject characterPrefab;
@@ -28,11 +31,15 @@ namespace Assets.Scripts
         public float CamZoomSpeed;
 
         private Camera camera;
+        public Animator anim { get; private set; }
 
-        // Start is called before the first frame update
+
+        public event CharacterClickedEventHandler CharacterClicked;
+
         void Start()
         {
             camera = Camera.main;
+            anim = GetComponent<Animator>();
 
             var data = GameData.CreateFromJson(tileJson.text, characterJson.text, actionJson.text);
 
@@ -70,6 +77,7 @@ namespace Assets.Scripts
 
         public void SetupTiles()
         {
+            overlayMap.ClearAllTiles();
             tileMap.ClearAllTiles();
             for (int y = 0; y < DM.map.Height; y++)
             {
@@ -105,6 +113,7 @@ namespace Assets.Scripts
 
             //handle input
             //move camera
+            //TODO: hold middle mouse button to pan around
             var cameraX = camera.transform.position.x + CamVelocity * Input.GetAxis("Horizontal") * Time.deltaTime;
             var cameraY = camera.transform.position.y + CamVelocity * Input.GetAxis("Vertical") * Time.deltaTime;
             camera.transform.position = new Vector3(cameraX, cameraY, camera.transform.position.z);
@@ -113,10 +122,31 @@ namespace Assets.Scripts
 
             if (Input.GetMouseButtonDown(0))
             {
+                //find out what we clicked on
+                //is it unit?
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                if (hit.collider != null)
+                {
+                    if(hit.collider.tag == "Character")
+                    {
+                        //TODO: maybe should use position?
+                        var guy = hit.collider.GetComponent<CharacterRenderer>().CharacterRepresented; 
+                        if(CharacterClicked != null)
+                        {
+                            CharacterClicked(this, new CharacterClickedEventArgs(guy));
+                        }
+                            
+                    }
+                }
 
             }
         }
 
 
+    public delegate void CharacterClickedEventHandler(object sender, CharacterClickedEventArgs a);
     }
+
 }
