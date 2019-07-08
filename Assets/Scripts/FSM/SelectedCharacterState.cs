@@ -14,6 +14,7 @@ namespace Assets.Scripts.FSM
         {
             base.OnStateEnter(animator, animatorStateInfo, layerIndex);
             cm.Nameplate.ShowCharacter(cm.SelectedCharacter);
+            cm.AbilityPanel.AskToActivate(cm, cm.SelectedCharacter);
             cm.Deselect += Deselect;
             cm.TileClicked += DeselectTileClick;
         }
@@ -26,6 +27,7 @@ namespace Assets.Scripts.FSM
         private void Deselect(object sender, EventArgs e)
         {
             cm.Nameplate.StopShowing();
+            cm.AbilityPanel.ClearButtons();
             cm.SelectedCharacter = null;
             cm.anim.SetTrigger("Deselect");
         }

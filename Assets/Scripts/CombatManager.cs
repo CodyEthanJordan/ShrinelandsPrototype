@@ -11,6 +11,7 @@ using Assets.Scripts.Events;
 using System;
 using Assets.Scripts.UI;
 using ShrinelandsTactics.World;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts
 {
@@ -20,6 +21,7 @@ namespace Assets.Scripts
         public Tilemap tileMap;
         public Tilemap overlayMap;
         public NameplateUI Nameplate;
+        public AbilityPanelUI AbilityPanel;
 
         public UnityEngine.Tilemaps.Tile emptyTile;
         public UnityEngine.Tilemaps.Tile wallTile;
@@ -137,7 +139,7 @@ namespace Assets.Scripts
                 }
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 //find out what we clicked on
                 //is it unit?
@@ -173,6 +175,13 @@ namespace Assets.Scripts
 
             }
         }
+
+        public void Activate(Character guy)
+        {
+            DM.Activate(guy); //TODO: check for errors
+            anim.SetTrigger("Activate");
+        }
+
 
 
     public delegate void CharacterClickedEventHandler(object sender, CharacterClickedEventArgs a);
