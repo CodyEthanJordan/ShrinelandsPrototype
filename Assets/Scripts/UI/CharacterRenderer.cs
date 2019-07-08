@@ -7,7 +7,7 @@ using UnityEngine;
 using ShrinelandsTactics;
 using ShrinelandsTactics.World;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.UI
 {
     public class CharacterRenderer : MonoBehaviour
     {

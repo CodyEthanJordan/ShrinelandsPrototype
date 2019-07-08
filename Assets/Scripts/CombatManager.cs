@@ -8,6 +8,9 @@ using System.IO;
 using System.Text;
 using Assets.Scripts.FSM;
 using Assets.Scripts.Events;
+using System;
+using Assets.Scripts.UI;
+using ShrinelandsTactics.World;
 
 namespace Assets.Scripts
 {
@@ -16,8 +19,12 @@ namespace Assets.Scripts
         public DungeonMaster DM;
         public Tilemap tileMap;
         public Tilemap overlayMap;
-        public Tile emptyTile;
-        public Tile wallTile;
+        public NameplateUI Nameplate;
+
+        public UnityEngine.Tilemaps.Tile emptyTile;
+        public UnityEngine.Tilemaps.Tile wallTile;
+
+
         public GameObject characterPrefab;
 
         public TextAsset characterJson;
@@ -32,9 +39,11 @@ namespace Assets.Scripts
 
         private Camera camera;
         public Animator anim { get; private set; }
-
+        public Character SelectedCharacter { get; internal set; }
 
         public event CharacterClickedEventHandler CharacterClicked;
+        public event EventHandler<Vector3> TileClicked;
+        public event EventHandler Deselect;
 
         void Start()
         {
@@ -120,6 +129,14 @@ namespace Assets.Scripts
             camera.orthographicSize += Input.GetAxis("Mouse ScrollWheel") * CamZoomSpeed * Time.deltaTime;
             camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, 2, CamMaxZoom);
 
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(Deselect != null)
+                {
+                    Deselect(this, null);
+                }
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 //find out what we clicked on
@@ -130,6 +147,7 @@ namespace Assets.Scripts
                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
                 if (hit.collider != null)
                 {
+                    Debug.LogError(hit.collider.name);
                     if(hit.collider.tag == "Character")
                     {
                         //TODO: maybe should use position?
@@ -139,6 +157,17 @@ namespace Assets.Scripts
                             CharacterClicked(this, new CharacterClickedEventArgs(guy));
                         }
                             
+                    }
+                    else
+                    {
+                        if(hit.collider.tag == "Tilemap")
+                        {
+                            if(TileClicked != null)
+                            {
+                                Debug.Log("Clicked on tile at " + mousePos);
+                                TileClicked(this, mousePos);
+                            }
+                        }
                     }
                 }
 

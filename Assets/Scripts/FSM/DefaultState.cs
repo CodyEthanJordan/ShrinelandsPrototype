@@ -20,6 +20,7 @@ namespace Assets.Scripts.FSM
         {
             var guy = a.Guy;
             Debug.Log("Clicked on " + guy.Name);
+            cm.SelectedCharacter = a.Guy;
             cm.anim.SetTrigger("Select");
         }
 
