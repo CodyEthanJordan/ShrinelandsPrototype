@@ -31,6 +31,20 @@ namespace Assets.Scripts.UI
             button.GetComponent<Button>().onClick.AddListener(ActivateGuy);
         }
 
+        public void ShowAbilities(CombatManager cm, Character guy)
+        {
+            ClearButtons();
+            this.guy = guy;
+            this.cm = cm;
+
+            foreach (var ability in guy.Actions)
+            {
+                var button = Instantiate(ButtonPrefab, this.transform);
+                button.GetComponentInChildren<Text>().text = ability.Name;
+                button.GetComponent<Button>().onClick.AddListener(() => UseAction(ability.Name));
+            }
+        }
+
         public void ClearButtons()
         {
             foreach (Transform child in transform)
@@ -42,6 +56,11 @@ namespace Assets.Scripts.UI
         void ActivateGuy()
         {
             cm.Activate(guy);
+        }
+
+        void UseAction(string actionName)
+        {
+            cm.StartTargetingAction(guy, actionName);
         }
     }
 }

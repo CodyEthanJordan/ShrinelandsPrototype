@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 854589609}
   overlayMap: {fileID: 1324140820}
+  overlayTile: {fileID: 11400000, guid: 001df32fda97c804f8bb9f2f6b86e913, type: 2}
   Nameplate: {fileID: 1582797655}
   AbilityPanel: {fileID: 384425448}
   emptyTile: {fileID: 11400000, guid: e6c04a3ed2b1a7f4cbd166bd70963fc3, type: 2}

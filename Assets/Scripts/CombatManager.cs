@@ -12,6 +12,7 @@ using System;
 using Assets.Scripts.UI;
 using ShrinelandsTactics.World;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 namespace Assets.Scripts
 {
@@ -20,6 +21,7 @@ namespace Assets.Scripts
         public DungeonMaster DM;
         public Tilemap tileMap;
         public Tilemap overlayMap;
+        public UnityEngine.Tilemaps.Tile overlayTile;
         public NameplateUI Nameplate;
         public AbilityPanelUI AbilityPanel;
 
@@ -42,6 +44,7 @@ namespace Assets.Scripts
         private Camera camera;
         public Animator anim { get; private set; }
         public Character SelectedCharacter { get; internal set; }
+        public ShrinelandsTactics.Mechanics.Action SelectedAction { get; internal set; } 
 
         public event CharacterClickedEventHandler CharacterClicked;
         public event EventHandler<Vector3> TileClicked;
@@ -84,6 +87,22 @@ namespace Assets.Scripts
             DM = DungeonMaster.LoadEncounter(mapping, sb.ToString(), data);
             SetupTiles();
             SetupUnits();
+        }
+
+        public void StartTargetingAction(Character guy, string actionName)
+        {
+            Debug.Log(guy.Name + " is choosing target for " + actionName);
+            SelectedAction = guy.Actions.First(a => a.Name.Equals(actionName));
+            anim.SetTrigger("Targeting");
+        }
+
+        public void PutOverlayTilesAt(List<Vector3Int> places)
+        {
+            overlayMap.ClearAllTiles();
+            foreach (var pos in places)
+            {
+                overlayMap.SetTile(pos, overlayTile);
+            }
         }
 
         public void SetupTiles()
