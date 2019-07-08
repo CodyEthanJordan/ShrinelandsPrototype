@@ -48,3 +48,9 @@ TagManager:
   - name: Units
     uniqueID: 511168579
     locked: 0
+  - name: Overlay
+    uniqueID: 361203107
+    locked: 0
+  - name: Hover
+    uniqueID: 3574357163
+    locked: 0

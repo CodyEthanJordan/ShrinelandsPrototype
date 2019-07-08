@@ -23,9 +23,17 @@ namespace Assets.Scripts
         public TextAsset levelYaml;
         public Texture2D levelLayout;
 
+        public float CamVelocity;
+        public float CamMaxZoom;
+        public float CamZoomSpeed;
+
+        private Camera camera;
+
         // Start is called before the first frame update
         void Start()
         {
+            camera = Camera.main;
+
             var data = GameData.CreateFromJson(tileJson.text, characterJson.text, actionJson.text);
 
             var yaml = new YamlStream();
@@ -95,6 +103,20 @@ namespace Assets.Scripts
         void Update()
         {
 
+            //handle input
+            //move camera
+            var cameraX = camera.transform.position.x + CamVelocity * Input.GetAxis("Horizontal") * Time.deltaTime;
+            var cameraY = camera.transform.position.y + CamVelocity * Input.GetAxis("Vertical") * Time.deltaTime;
+            camera.transform.position = new Vector3(cameraX, cameraY, camera.transform.position.z);
+            camera.orthographicSize += Input.GetAxis("Mouse ScrollWheel") * CamZoomSpeed * Time.deltaTime;
+            camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, 2, CamMaxZoom);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+
+            }
         }
+
+
     }
 }

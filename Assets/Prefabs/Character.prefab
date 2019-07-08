@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8977783613539908000}
   - component: {fileID: 2173066759843131833}
   - component: {fileID: 6208379471689375987}
+  - component: {fileID: -8875399357228570249}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -67,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 511168579
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 3542127132570728493, guid: 7557833a3b0e4094391ab402aa0bcb41,
     type: 3}
@@ -99,3 +100,29 @@ MonoBehaviour:
     type: 3}
   slimelordSprite: {fileID: 8248543377919322394, guid: 7557833a3b0e4094391ab402aa0bcb41,
     type: 3}
+--- !u!61 &-8875399357228570249
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790654962466376137}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: -0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 1}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
