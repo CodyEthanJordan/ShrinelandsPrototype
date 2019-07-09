@@ -47,7 +47,7 @@ namespace Assets.Scripts.UI
 
         internal void UpdatePosition(CombatManager cm)
         {
-            var pos = new Vector3(CharacterRepresented.Pos.x, cm.DM.map.Height - CharacterRepresented.Pos.y, 0);
+            var pos = new Vector3(CharacterRepresented.Pos.x, cm.DM.map.Height - CharacterRepresented.Pos.y + 1, 0);
             this.transform.position = pos;
         }
     }

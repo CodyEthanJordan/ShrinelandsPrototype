@@ -72,11 +72,11 @@ namespace Assets.Scripts
             sb.AppendLine("Test Map");
             sb.AppendLine(levelLayout.width + " " + levelLayout.height);
 
-            for (int y = 0; y < levelLayout.height; y++)
+            for (int y = 1; y <= levelLayout.height; y++)
             {
                 for (int x = 0; x < levelLayout.width; x++)
                 {
-                    var color = levelLayout.GetPixel(x, y);
+                    var color = levelLayout.GetPixel(x, levelLayout.height-y);
                     var r = (byte)(color.r * 255);
                     var g = (byte)(color.g * 255);
                     var b = (byte)(color.b * 255);
@@ -124,11 +124,11 @@ namespace Assets.Scripts
                     var tile = DM.map.GetTile(x, y);
                     if (tile.Passable)
                     {
-                        tileMap.SetTile(new Vector3Int(x, y, 0), emptyTile);
+                        tileMap.SetTile(new Vector3Int(x, DM.map.Height-y, 0), emptyTile);
                     }
                     else
                     {
-                        tileMap.SetTile(new Vector3Int(x, y, 0), wallTile);
+                        tileMap.SetTile(new Vector3Int(x, DM.map.Height-y, 0), wallTile);
                     }
                 }
             }
@@ -138,7 +138,7 @@ namespace Assets.Scripts
         {
             foreach (var guy in DM.Characters)
             {
-                var pos = new Vector3(guy.Pos.x, DM.map.Height - guy.Pos.y, 0);
+                var pos = new Vector3(guy.Pos.x, DM.map.Height - guy.Pos.y + 1, 0);
                 var go = Instantiate(characterPrefab, pos, Quaternion.identity, this.transform);
                 var controller = go.GetComponent<CharacterRenderer>();
                 controller.RepresentCharacter(guy);
@@ -210,6 +210,12 @@ namespace Assets.Scripts
         {
             DM.Activate(guy); //TODO: check for errors
             anim.SetTrigger("Activate");
+        }
+
+        public ShrinelandsTactics.BasicStructures.Position UnityToShrinelandsPosition(Vector3 x)
+        {
+            Vector3Int rounded = new Vector3Int(Mathf.RoundToInt(x.x), Mathf.RoundToInt(x.y), Mathf.RoundToInt(x.z));
+            return new ShrinelandsTactics.BasicStructures.Position(rounded.x, DM.map.Height + 1 - rounded.y);
         }
 
 
