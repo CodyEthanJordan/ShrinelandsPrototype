@@ -24,6 +24,7 @@ namespace Assets.Scripts
         public UnityEngine.Tilemaps.Tile overlayTile;
         public NameplateUI Nameplate;
         public AbilityPanelUI AbilityPanel;
+        public CharacterPopupUI PopupPanel;
 
         public UnityEngine.Tilemaps.Tile emptyTile;
         public UnityEngine.Tilemaps.Tile wallTile;
@@ -44,6 +45,7 @@ namespace Assets.Scripts
         private Camera camera;
         public Animator anim { get; private set; }
         public Character SelectedCharacter { get; internal set; }
+        public Character MouseoverCharacter { get; internal set; }
         public ShrinelandsTactics.Mechanics.Action SelectedAction { get; internal set; } 
 
         public event CharacterClickedEventHandler CharacterClicked;
@@ -55,6 +57,7 @@ namespace Assets.Scripts
         {
             camera = Camera.main;
             anim = GetComponent<Animator>();
+            MouseoverCharacter = null;
 
             var data = GameData.CreateFromJson(tileJson.text, characterJson.text, actionJson.text);
 
@@ -166,16 +169,39 @@ namespace Assets.Scripts
                 }
             }
 
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            var hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
+
+            //check for mouseover events
+            if(hits != null && hits.Any(h => h.collider.tag == "Character"))
+            {
+                var hit = hits.First(h => h.collider.tag == "Character");
+                var guy = hit.collider.GetComponent<CharacterRenderer>().CharacterRepresented;
+                if(guy != MouseoverCharacter)
+                {
+                    PopupPanel.ShowCharacter(guy);
+                    MouseoverCharacter = guy;
+                }
+            }
+            else
+            {
+                if(MouseoverCharacter != null)
+                {
+                    PopupPanel.Clear();
+                    MouseoverCharacter = null;
+                }
+            }
+
+
+
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 //find out what we clicked on
                 //is it unit?
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
                 Debug.Log("Clicked at " + mousePos2D + " aka " + UnityToShrinelandsPosition(mousePos2D));
 
-                var hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
 
                 if(hits.Any(h => h.collider.tag == "Overlay"))
                 {

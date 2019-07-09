@@ -155,6 +155,7 @@ MonoBehaviour:
   overlayTile: {fileID: 11400000, guid: 001df32fda97c804f8bb9f2f6b86e913, type: 2}
   Nameplate: {fileID: 1582797655}
   AbilityPanel: {fileID: 384425448}
+  PopupPanel: {fileID: 1164060537}
   emptyTile: {fileID: 11400000, guid: e6c04a3ed2b1a7f4cbd166bd70963fc3, type: 2}
   wallTile: {fileID: 11400000, guid: 2bf78c4036268ba46aaa142b43fd4774, type: 2}
   characterPrefab: {fileID: 790654962466376137, guid: 847ddb3c1df45c14fb8926af57b970e4,
@@ -1639,6 +1640,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3459415147226094996}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1164060537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109109117227987503, guid: 5cf0dc9bd4e6fb0449c3531c220d747d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3459415147226094996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802f0399bb501a845afe08d5ab051fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1324140817
 GameObject:
   m_ObjectHideFlags: 0
