@@ -43,6 +43,9 @@ namespace Assets.Scripts.UI
                 button.GetComponentInChildren<Text>().text = ability.Name;
                 button.GetComponent<Button>().onClick.AddListener(() => UseAction(ability.Name));
             }
+            var deactivateButton = Instantiate(ButtonPrefab, this.transform);
+            deactivateButton.GetComponentInChildren<Text>().text = "Deactivate";
+            deactivateButton.GetComponent<Button>().onClick.AddListener(DeactivateGuy);
         }
 
         public void ClearButtons()
@@ -56,6 +59,11 @@ namespace Assets.Scripts.UI
         void ActivateGuy()
         {
             cm.Activate(guy);
+        }
+
+        void DeactivateGuy()
+        {
+            cm.Deactivate(guy);
         }
 
         void UseAction(string actionName)

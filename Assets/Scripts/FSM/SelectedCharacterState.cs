@@ -35,6 +35,7 @@ namespace Assets.Scripts.FSM
         public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
         {
             cm.Deselect -= Deselect;
+            cm.TileClicked -= DeselectTileClick;
         }
     }
 }

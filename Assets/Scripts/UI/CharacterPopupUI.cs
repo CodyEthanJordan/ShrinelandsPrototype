@@ -18,6 +18,7 @@ namespace Assets.Scripts.UI
         public Text ManaText;
         public GameObject TraitsPane;
         public GameObject AbilityPane;
+        public GameObject ConditionPane;
 
         public GameObject TextPrefab;
 
@@ -44,6 +45,11 @@ namespace Assets.Scripts.UI
                 var text = Instantiate(TextPrefab, AbilityPane.transform);
                 text.GetComponent<Text>().text = ability.Name;
             }
+            foreach (var cond in guy.Conditions)
+            {
+                var text = Instantiate(TextPrefab, ConditionPane.transform);
+                text.GetComponent<Text>().text = cond.ToString();
+            }
         }
 
         public void Clear()
@@ -58,6 +64,10 @@ namespace Assets.Scripts.UI
                 Destroy(child.gameObject);
             }
             foreach (Transform child in AbilityPane.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach (Transform child in ConditionPane.transform)
             {
                 Destroy(child.gameObject);
             }

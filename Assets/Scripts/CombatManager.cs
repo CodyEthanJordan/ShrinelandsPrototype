@@ -13,6 +13,7 @@ using Assets.Scripts.UI;
 using ShrinelandsTactics.World;
 using UnityEngine.EventSystems;
 using System.Linq;
+using ShrinelandsTactics.BasicStructures;
 
 namespace Assets.Scripts
 {
@@ -39,6 +40,7 @@ namespace Assets.Scripts
         public Texture2D levelLayout;
 
         public float CamVelocity;
+
         public float CamMaxZoom;
         public float CamZoomSpeed;
 
@@ -234,10 +236,23 @@ namespace Assets.Scripts
             }
         }
 
+        public void EndTurn()
+        {
+            //TODO: check if legal
+            DM.EndTurn();
+            anim.SetTrigger("EndTurn");
+        }
+
         public void Activate(Character guy)
         {
             DM.Activate(guy); //TODO: check for errors
             anim.SetTrigger("Activate");
+        }
+
+        public void Deactivate(Character guy)
+        {
+            DM.Deactivate(guy); //TODO: check for errors
+            anim.SetTrigger("Deactivate");
         }
 
         public ShrinelandsTactics.BasicStructures.Position UnityToShrinelandsPosition(Vector3 x)
@@ -246,9 +261,12 @@ namespace Assets.Scripts
             return new ShrinelandsTactics.BasicStructures.Position(rounded.x, DM.map.Height - rounded.y);
         }
 
+        internal Vector3Int ShrinelandsToUnityVector(Position pos)
+        {
+            return new Vector3Int(pos.x, DM.map.Height - pos.y, 0);
+        }
 
-
-    public delegate void CharacterClickedEventHandler(object sender, CharacterClickedEventArgs a);
+        public delegate void CharacterClickedEventHandler(object sender, CharacterClickedEventArgs a);
     }
 
 }
