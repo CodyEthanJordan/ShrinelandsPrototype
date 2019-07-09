@@ -173,6 +173,8 @@ namespace Assets.Scripts
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
+                Debug.Log("Clicked at " + mousePos2D + " aka " + UnityToShrinelandsPosition(mousePos2D));
+
                 var hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
 
                 if(hits.Any(h => h.collider.tag == "Overlay"))
@@ -214,8 +216,8 @@ namespace Assets.Scripts
 
         public ShrinelandsTactics.BasicStructures.Position UnityToShrinelandsPosition(Vector3 x)
         {
-            Vector3Int rounded = new Vector3Int(Mathf.RoundToInt(x.x), Mathf.RoundToInt(x.y), Mathf.RoundToInt(x.z));
-            return new ShrinelandsTactics.BasicStructures.Position(rounded.x, DM.map.Height + 1 - rounded.y);
+            Vector3Int rounded = new Vector3Int(Mathf.FloorToInt(x.x), Mathf.FloorToInt(x.y), Mathf.FloorToInt(x.z));
+            return new ShrinelandsTactics.BasicStructures.Position(rounded.x, DM.map.Height - rounded.y);
         }
 
 
