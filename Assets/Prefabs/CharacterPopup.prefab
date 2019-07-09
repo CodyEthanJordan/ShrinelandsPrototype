@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 3459415146074897122}
   - component: {fileID: 3459415146074897132}
   - component: {fileID: 3459415146074897123}
+  - component: {fileID: 8109109117227987503}
   m_Layer: 5
   m_Name: CharacterPopup
   m_TagString: Untagged
@@ -436,6 +437,27 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8109109117227987503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459415146074897121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802f0399bb501a845afe08d5ab051fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameText: {fileID: 3459415145654695402}
+  VitText: {fileID: 3459415145601489910}
+  MoveText: {fileID: 3459415145720947335}
+  StaText: {fileID: 3459415145890203048}
+  ManaText: {fileID: 3459415147346643683}
+  TraitsPane: {fileID: 3459415146077725852}
+  AbilityPane: {fileID: 3459415145549346175}
+  TextPrefab: {fileID: 8160293066321529358, guid: 9758693b102880241a758a6f3d3b2051,
+    type: 3}
 --- !u!1 &3459415146077725852
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -678,14 +700,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1112,6 +1134,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9758693b102880241a758a6f3d3b2051, type: 3}
+--- !u!114 &3459415145601489910 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8160293066321529356, guid: 9758693b102880241a758a6f3d3b2051,
+    type: 3}
+  m_PrefabInstance: {fileID: 4701020170171404794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3459415145601489909 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8160293066321529359, guid: 9758693b102880241a758a6f3d3b2051,
