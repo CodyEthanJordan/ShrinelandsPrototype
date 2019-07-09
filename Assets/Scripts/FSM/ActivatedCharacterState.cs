@@ -15,10 +15,23 @@ namespace Assets.Scripts.FSM
             base.OnStateEnter(animator, animatorStateInfo, layerIndex);
             cm.Nameplate.ShowCharacter(cm.SelectedCharacter);
             cm.AbilityPanel.ShowAbilities(cm, cm.SelectedCharacter);
+            cm.OverlayClicked += OverlayClicked;
 
             //get movement
+            ShowMovementOptions();
+        }
+
+        private void OverlayClicked(object sender, Vector3 e)
+        {
+            var outcome = cm.DM.MoveCharacter(cm.SelectedCharacter, Map.Direction.N);
+            Debug.Log(outcome.Message.ToString());
+            ShowMovementOptions();
+        }
+
+        public void ShowMovementOptions()
+        {
             List<Vector3Int> movePlaces = new List<Vector3Int>();
-            movePlaces.Add(new Vector3Int(cm.SelectedCharacter.Pos.x, cm.DM.map.Height - cm.SelectedCharacter.Pos.y, 0));
+            movePlaces.Add(new Vector3Int(cm.SelectedCharacter.Pos.x, cm.DM.map.Height - 1 - cm.SelectedCharacter.Pos.y, 0));
             cm.PutOverlayTilesAt(movePlaces);
         }
 
@@ -27,6 +40,7 @@ namespace Assets.Scripts.FSM
             cm.overlayMap.ClearAllTiles();
             cm.Nameplate.StopShowing();
             cm.AbilityPanel.ClearButtons();
+            cm.OverlayClicked -= OverlayClicked;
         }
     }
 }

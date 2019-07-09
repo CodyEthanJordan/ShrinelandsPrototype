@@ -48,6 +48,7 @@ namespace Assets.Scripts
 
         public event CharacterClickedEventHandler CharacterClicked;
         public event EventHandler<Vector3> TileClicked;
+        public event EventHandler<Vector3> OverlayClicked;
         public event EventHandler Deselect;
 
         void Start()
@@ -85,8 +86,15 @@ namespace Assets.Scripts
             }
 
             DM = DungeonMaster.LoadEncounter(mapping, sb.ToString(), data);
+            DM.OnCharacterMoved += OnCharacterMoved;
             SetupTiles();
             SetupUnits();
+        }
+
+        private void OnCharacterMoved(object sender, ShrinelandsTactics.BasicStructures.Events.CharacterMovedEventArgs a)
+        {
+            var renderer = GetComponentsInChildren<CharacterRenderer>().First(cr => cr.CharacterRepresented.ID == a.ID);
+            renderer.UpdatePosition(this);
         }
 
         public void StartTargetingAction(Character guy, string actionName)
@@ -165,33 +173,36 @@ namespace Assets.Scripts
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-                if (hit.collider != null)
+                var hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
+
+                if(hits.Any(h => h.collider.tag == "Overlay"))
                 {
-                    Debug.LogError(hit.collider.name);
-                    if(hit.collider.tag == "Character")
+                    if(OverlayClicked != null)
                     {
-                        //TODO: maybe should use position?
-                        var guy = hit.collider.GetComponent<CharacterRenderer>().CharacterRepresented; 
-                        if(CharacterClicked != null)
-                        {
-                            CharacterClicked(this, new CharacterClickedEventArgs(guy));
-                        }
-                            
+                        Debug.Log("Clicked on overlay at " + mousePos);
+                        OverlayClicked(this, mousePos);
                     }
-                    else
+                }
+                else if (hits.Any(h => h.collider.tag == "Character"))
+                {
+                    var hit = hits.First(h => h.collider.tag == "Character");
+                    Debug.Log(hit.collider.name);
+                    var guy = hit.collider.GetComponent<CharacterRenderer>().CharacterRepresented;
+                    if (CharacterClicked != null)
                     {
-                        if(hit.collider.tag == "Tilemap")
-                        {
-                            if(TileClicked != null)
-                            {
-                                Debug.Log("Clicked on tile at " + mousePos);
-                                TileClicked(this, mousePos);
-                            }
-                        }
+                        CharacterClicked(this, new CharacterClickedEventArgs(guy));
+                    }
+                }
+                else if (hits.Any(h => h.collider.tag == "Tilemap"))
+                {
+                    if (TileClicked != null)
+                    {
+                        Debug.Log("Clicked on tile at " + mousePos);
+                        TileClicked(this, mousePos);
                     }
                 }
 
+             
             }
         }
 
