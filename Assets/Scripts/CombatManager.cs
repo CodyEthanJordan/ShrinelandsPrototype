@@ -92,7 +92,13 @@ namespace Assets.Scripts
 
             DM = DungeonMaster.LoadEncounter(mapping, sb.ToString(), data);
             DM.OnCharacterMoved += OnCharacterMoved;
+            DM.OnCharacterCreated += OnCharacterCreated;
             SetupTiles();
+            SetupUnits();
+        }
+
+        private void OnCharacterCreated(object sender, Character e)
+        {
             SetupUnits();
         }
 
@@ -141,6 +147,13 @@ namespace Assets.Scripts
 
         public void SetupUnits()
         {
+            foreach (Transform child in transform)
+            {
+                if(child.gameObject.CompareTag("Character"))
+                {
+                    Destroy(child.gameObject);
+                }
+            }
             foreach (var guy in DM.Characters)
             {
                 var pos = new Vector3(guy.Pos.x, DM.map.Height - guy.Pos.y + 1, 0);
@@ -201,10 +214,6 @@ namespace Assets.Scripts
             {
                 //find out what we clicked on
                 //is it unit?
-
-                Debug.Log("Clicked at " + mousePos2D + " aka " + UnityToShrinelandsPosition(mousePos2D));
-
-
                 if(hits.Any(h => h.collider.tag == "Overlay"))
                 {
                     if(OverlayClicked != null)
