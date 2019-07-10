@@ -14,6 +14,7 @@ using ShrinelandsTactics.World;
 using UnityEngine.EventSystems;
 using System.Linq;
 using ShrinelandsTactics.BasicStructures;
+using Assets.Scripts.Networking;
 
 namespace Assets.Scripts
 {
@@ -38,13 +39,15 @@ namespace Assets.Scripts
         public TextAsset actionJson;
         public TextAsset levelYaml;
         public Texture2D levelLayout;
+        private GameData data;
 
+        public bool Connected = false;
         public float CamVelocity;
-
         public float CamMaxZoom;
         public float CamZoomSpeed;
 
         private Camera camera;
+        private NetworkManager nm;
         public Animator anim { get; private set; }
         public Character SelectedCharacter { get; internal set; }
         public Character MouseoverCharacter { get; internal set; }
@@ -61,8 +64,25 @@ namespace Assets.Scripts
             anim = GetComponent<Animator>();
             MouseoverCharacter = null;
 
-            var data = GameData.CreateFromJson(tileJson.text, characterJson.text, actionJson.text);
+            data = GameData.CreateFromJson(tileJson.text, characterJson.text, actionJson.text);
 
+           
+        }
+
+        public void Setup(NetworkManager nm, DungeonMaster DM)
+        {
+            this.DM = DM;
+            this.nm = nm;
+            DM.OnCharacterMoved += OnCharacterMoved;
+            DM.OnCharacterCreated += OnCharacterCreated;
+            SetupTiles();
+            SetupUnits();
+            Connected = true;
+        }
+
+        public void LoadEncounter()
+        {
+            throw new NotImplementedException(); //TODO: doesn't connect right stuff
             var yaml = new YamlStream();
             using (StringReader r = new StringReader(levelYaml.text))
             {
@@ -81,7 +101,7 @@ namespace Assets.Scripts
             {
                 for (int x = 0; x < levelLayout.width; x++)
                 {
-                    var color = levelLayout.GetPixel(x, levelLayout.height-y);
+                    var color = levelLayout.GetPixel(x, levelLayout.height - y);
                     var r = (byte)(color.r * 255);
                     var g = (byte)(color.g * 255);
                     var b = (byte)(color.b * 255);
@@ -91,10 +111,6 @@ namespace Assets.Scripts
             }
 
             DM = DungeonMaster.LoadEncounter(mapping, sb.ToString(), data);
-            DM.OnCharacterMoved += OnCharacterMoved;
-            DM.OnCharacterCreated += OnCharacterCreated;
-            SetupTiles();
-            SetupUnits();
         }
 
         private void OnCharacterCreated(object sender, Character e)
@@ -166,7 +182,10 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-
+            if(!Connected)
+            {
+                return;
+            }
             //handle input
             //move camera
             //TODO: hold middle mouse button to pan around
@@ -207,8 +226,6 @@ namespace Assets.Scripts
                     MouseoverCharacter = null;
                 }
             }
-
-
 
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
