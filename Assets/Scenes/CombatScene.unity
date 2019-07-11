@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1db093b1b39d0f4dbfe5b42cff4f443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 188208995}
   tileMap: {fileID: 854589609}
   overlayMap: {fileID: 1324140820}
   overlayTile: {fileID: 11400000, guid: 001df32fda97c804f8bb9f2f6b86e913, type: 2}
@@ -160,14 +161,18 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: 2bf78c4036268ba46aaa142b43fd4774, type: 2}
   characterPrefab: {fileID: 790654962466376137, guid: 847ddb3c1df45c14fb8926af57b970e4,
     type: 3}
+  DeckPrefab: {fileID: 2612210701979802903, guid: d49164ec4d667ce4c93922e51c9a1fe0,
+    type: 3}
   characterJson: {fileID: 4900000, guid: 8d22a3f0ebfb61e4b86a31effd002ded, type: 3}
   tileJson: {fileID: 4900000, guid: 775dd366af0792e4d9591d3f093f44d7, type: 3}
   actionJson: {fileID: 4900000, guid: 73d7c484fa771a940a6bcf9a576b003a, type: 3}
   levelYaml: {fileID: 4900000, guid: d556d0e405141ae4c9af68329a8320fe, type: 3}
   levelLayout: {fileID: 2800000, guid: 9387bbaf3cb7bb445815c7bd0e8c47a7, type: 3}
+  Connected: 0
   CamVelocity: 10
   CamMaxZoom: 14
   CamZoomSpeed: -400
+  nm: {fileID: 0}
 --- !u!4 &133182698
 Transform:
   m_ObjectHideFlags: 0
@@ -1919,7 +1924,7 @@ PrefabInstance:
     - target: {fileID: 7967266426720743849, guid: c0a00c7bf75301342be8f5db4e8d66f9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.399994
+      value: 26.400024
       objectReference: {fileID: 0}
     - target: {fileID: 7967266426720743849, guid: c0a00c7bf75301342be8f5db4e8d66f9,
         type: 3}

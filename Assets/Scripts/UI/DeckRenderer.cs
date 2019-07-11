@@ -16,28 +16,21 @@ namespace Assets.Scripts.UI
         public int ShuffledOverlap;
         public float ShuffleSpeed;
         public float SuspenseTime;
+        public float WaitTime;
 
         private HorizontalLayoutGroup hlg;
 
-        private void Start()
+        private void Awake()
         {
             hlg = GetComponent<HorizontalLayoutGroup>();
+        }
 
-            Deck deck = new Deck();
-            deck.AddCards(new Card("Hit", Card.CardType.Hit), 3);
-            deck.AddCards(new Card("Dodge", Card.CardType.Miss), 1);
-            deck.AddCards(new Card("Glancing Blow", Card.CardType.Armor), 1);
-            deck.AddCards(new Card("Defense", Card.CardType.Miss), 2);
-
-            RenderDeck(deck);
+        private void Start()
+        {
         }
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                StartCoroutine(DrawCard("Hit"));
-            }
         }
 
         public void RenderDeck(Deck deck)
@@ -48,12 +41,13 @@ namespace Assets.Scripts.UI
                 var go = Instantiate(CardPrefab, this.transform);
                 var cr = go.GetComponent<CardRenderer>();
                 cr.RenderCard(card);
-                Debug.Log(card);
             }
         }
 
         public IEnumerator DrawCard(string name)
         {
+            yield return new WaitForSeconds(WaitTime);
+            Debug.Log("Drawing card " + name);
             yield return Shuffle();
 
             var cr = GetComponentsInChildren<CardRenderer>().FirstOrDefault(c => c.NameText.text == name);
@@ -66,6 +60,8 @@ namespace Assets.Scripts.UI
             yield return new WaitForSeconds(SuspenseTime);
             cr.transform.SetAsLastSibling();
             cr.FlipOver();
+            yield return new WaitForSeconds(WaitTime);
+            Destroy(this.gameObject);
         }
 
         public IEnumerator Shuffle()

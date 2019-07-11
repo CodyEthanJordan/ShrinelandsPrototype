@@ -21,6 +21,7 @@ namespace Assets.Scripts
     public class CombatManager : MonoBehaviour
     {
         public DungeonMaster DM;
+        public Canvas canvas;
         public Tilemap tileMap;
         public Tilemap overlayMap;
         public UnityEngine.Tilemaps.Tile overlayTile;
@@ -33,6 +34,7 @@ namespace Assets.Scripts
 
 
         public GameObject characterPrefab;
+        public GameObject DeckPrefab;
 
         public TextAsset characterJson;
         public TextAsset tileJson;
@@ -76,9 +78,18 @@ namespace Assets.Scripts
             this.nm = nm;
             DM.OnCharacterMoved += OnCharacterMoved;
             DM.OnCharacterCreated += OnCharacterCreated;
+            DM.OnCardDrawn += OnCardDrawn;
             SetupTiles();
             SetupUnits();
             Connected = true;
+        }
+
+        private void OnCardDrawn(object sender, ShrinelandsTactics.BasicStructures.Events.CardDrawnEventArgs a)
+        {
+            var go = Instantiate(DeckPrefab, canvas.transform);
+            var dr = go.GetComponent<DeckRenderer>();
+            dr.RenderDeck(a.deck);
+            StartCoroutine(dr.DrawCard(a.card.Name));
         }
 
         public void LoadEncounter()

@@ -24,7 +24,7 @@ namespace Assets.Scripts.UI
 
         private bool faceUp = true;
 
-        private void Start()
+        private void Awake()
         {
             image = GetComponent<Image>();
         }
