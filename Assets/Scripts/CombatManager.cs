@@ -42,6 +42,7 @@ namespace Assets.Scripts
         private GameData data;
 
         public bool Connected = false;
+        public List<Guid> PlayingAs = new List<Guid>();
         public float CamVelocity;
         public float CamMaxZoom;
         public float CamZoomSpeed;
