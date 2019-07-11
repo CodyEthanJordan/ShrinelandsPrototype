@@ -265,7 +265,8 @@ namespace Assets.Scripts
         public void EndTurn()
         {
             //TODO: check if legal
-            DM.EndTurn();
+            var outcome = DM.EndTurn();
+            nm.SendAction(outcome);
             anim.SetTrigger("EndTurn");
         }
 
