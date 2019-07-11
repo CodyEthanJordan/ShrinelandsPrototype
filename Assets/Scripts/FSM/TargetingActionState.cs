@@ -28,6 +28,7 @@ namespace Assets.Scripts.FSM
             List<string> targetString = new List<string>();
             targetString.Add(target.Name);
             var outcome = cm.DM.UseAbility(name, targetString); //TOOD: this is horrible
+            cm.nm.SendAction(outcome);
             Debug.Log(outcome.Message.ToString());
             cm.anim.SetTrigger("Deselect");
         }

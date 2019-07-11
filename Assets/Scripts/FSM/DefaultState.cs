@@ -13,7 +13,7 @@ namespace Assets.Scripts.FSM
         public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
         {
             base.OnStateEnter(animator, animatorStateInfo, layerIndex);
-            cm.overlayMap.ClearAllEditorPreviewTiles();
+            cm.overlayMap.ClearAllTiles();
             cm.Nameplate.StopShowing();
             cm.AbilityPanel.ClearButtons();
             cm.CharacterClicked += OnCharacterClicked;

@@ -47,7 +47,7 @@ namespace Assets.Scripts
         public float CamZoomSpeed;
 
         private Camera camera;
-        private NetworkManager nm;
+        public NetworkManager nm;
         public Animator anim { get; private set; }
         public Character SelectedCharacter { get; internal set; }
         public Character MouseoverCharacter { get; internal set; }
@@ -271,13 +271,15 @@ namespace Assets.Scripts
 
         public void Activate(Character guy)
         {
-            DM.Activate(guy); //TODO: check for errors
+            var outcome = DM.Activate(guy); //TODO: check for errors
+            nm.SendAction(outcome);
             anim.SetTrigger("Activate");
         }
 
         public void Deactivate(Character guy)
         {
-            DM.Deactivate(guy); //TODO: check for errors
+            var outcome = DM.Deactivate(guy); //TODO: check for errors
+            nm.SendAction(outcome);
             anim.SetTrigger("Deactivate");
         }
 

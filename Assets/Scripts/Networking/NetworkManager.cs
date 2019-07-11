@@ -11,6 +11,7 @@ using Lidgren.Network;
 using System.IO;
 using ShrinelandsTactics;
 using Newtonsoft.Json;
+using ShrinelandsTactics.BasicStructures;
 
 namespace Assets.Scripts.Networking
 {
@@ -22,6 +23,13 @@ namespace Assets.Scripts.Networking
         public readonly int Port = 6356;
 
         public InputField IPInput;
+
+        private bool SetupCombatManager = false;
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
 
         public void JoinGame()
         {
@@ -54,6 +62,16 @@ namespace Assets.Scripts.Networking
                 return;
             }
 
+            if(!SetupCombatManager)
+            {
+                var cm = GameObject.Find("CombatManager");
+                if(cm != null)
+                {
+                    cm.GetComponent<CombatManager>().Setup(this, DM);
+                    SetupCombatManager = true;
+                }
+            }
+
             //listen for messages
             NetIncomingMessage message;
             while ((message = Client.ReadMessage()) != null)
@@ -70,6 +88,13 @@ namespace Assets.Scripts.Networking
             }
         }
 
+        public void SendAction(Outcome outcome)
+        {
+            var json = JsonConvert.SerializeObject(outcome);
+            var message = Client.CreateMessage("Take action\n" + json);
+            Client.SendMessage(message, NetDeliveryMethod.ReliableOrdered);
+        }
+
         private void ProcessMessage(string message)
         {
             StringReader sr = new StringReader(message);
@@ -81,7 +106,10 @@ namespace Assets.Scripts.Networking
                     Debug.Log("Loaded level from server");
                     LoadCombatScene();
                     break;
-
+                case "Take action":
+                    var outcome = JsonConvert.DeserializeObject<Outcome>(sr.ReadToEnd());
+                    DM.ApplyOutcome(outcome);
+                    break;
                 default:
                     Debug.LogError("Unknown action: " + toDo);
                     break;
@@ -92,8 +120,6 @@ namespace Assets.Scripts.Networking
         private void LoadCombatScene()
         {
             SceneManager.LoadScene("CombatScene");
-            var cm = GameObject.Find("CombatManager");
-            cm.GetComponent<CombatManager>().Setup(this, DM);
         }
     }
 }

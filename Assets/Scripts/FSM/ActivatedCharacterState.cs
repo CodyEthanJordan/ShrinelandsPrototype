@@ -27,6 +27,7 @@ namespace Assets.Scripts.FSM
             var dir = pos - cm.SelectedCharacter.Pos;
             var direction = Map.DirectionToPosition.FirstOrDefault(x => x.Value == dir).Key;
             var outcome = cm.DM.MoveCharacter(cm.SelectedCharacter, direction);
+            cm.nm.SendAction(outcome);
             Debug.Log(outcome.Message.ToString());
             ShowMovementOptions();
         }
