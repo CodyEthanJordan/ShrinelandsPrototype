@@ -27,7 +27,6 @@ namespace Assets.Scripts.UI
         private void Start()
         {
             image = GetComponent<Image>();
-            FlipOver();
         }
 
         public void RenderCard(Card card)
