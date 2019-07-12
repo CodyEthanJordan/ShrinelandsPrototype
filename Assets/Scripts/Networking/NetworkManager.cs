@@ -103,6 +103,7 @@ namespace Assets.Scripts.Networking
             {
                 case "DM":
                     DM = JsonConvert.DeserializeObject<DungeonMaster>(sr.ReadToEnd());
+                    DM.SetupEvents();
                     Debug.Log("Loaded level from server");
                     LoadCombatScene();
                     break;

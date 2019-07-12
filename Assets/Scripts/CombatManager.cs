@@ -79,9 +79,22 @@ namespace Assets.Scripts
             DM.OnCharacterMoved += OnCharacterMoved;
             DM.OnCharacterCreated += OnCharacterCreated;
             DM.OnCardDrawn += OnCardDrawn;
+            DM.OnTurnPassed += OnTurnPassed;
+            DM.OnStatChanged += StatChanged;
             SetupTiles();
             SetupUnits();
             Connected = true;
+        }
+
+        private void StatChanged(object sender, ShrinelandsTactics.BasicStructures.Events.StatChangedEventArgs a)
+        {
+            var guy = DM.Characters.First(c => c.ID == a.CharacterID);
+            Nameplate.UpdateCharacter(guy);
+        }
+
+        private void OnTurnPassed(object sender, Guid e)
+        {
+            //TODO: pop up turn number and side info on UI
         }
 
         private void OnCardDrawn(object sender, ShrinelandsTactics.BasicStructures.Events.CardDrawnEventArgs a)
@@ -277,7 +290,7 @@ namespace Assets.Scripts
         public void EndTurn()
         {
             //TODO: check if legal
-            var outcome = DM.EndTurn();
+            var outcome = DM.EndTurn(DM.currentSideID);
             nm.SendAction(outcome);
             anim.SetTrigger("EndTurn");
         }

@@ -39,5 +39,13 @@ namespace Assets.Scripts.UI
             StaText.text = "Sta:" + guy.Stamina;
             ManaText.text = "Mana:" + guy.Mana;
         }
+
+        public void UpdateCharacter(Character guy)
+        {
+            if(NameText.text == guy.Name)
+            {
+                ShowCharacter(guy);
+            }
+        }
     }
 }
