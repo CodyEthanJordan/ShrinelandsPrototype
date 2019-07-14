@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d8175de13cc05f343a0679487f7af3bf
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Forest Shaded LET
+  fontNames:
+  - Forest Shaded LET
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 768d35a4fee7e144cbf0fd00a016451b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
