@@ -163,6 +163,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2996253f7c275954998e1f5059a59cef, type: 2}
   - {fileID: 11400000, guid: 1fc05a17f2408dd4fb185f532a892a32, type: 2}
   - {fileID: 11400000, guid: 3d43556eb6c8f354296bb5c7948cfa47, type: 2}
+  - {fileID: 11400000, guid: 1a32b41c208e8ba47aef8ff7fcf49f49, type: 2}
   characterPrefab: {fileID: 790654962466376137, guid: 847ddb3c1df45c14fb8926af57b970e4,
     type: 3}
   DeckPrefab: {fileID: 2612210701979802903, guid: d49164ec4d667ce4c93922e51c9a1fe0,

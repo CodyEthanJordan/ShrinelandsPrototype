@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -8377130690987618698
     second: Tiles_1
+  - first:
+      213: -4829012903545646581
+    second: Ooze
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,7 +101,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -119,7 +122,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,6 +130,27 @@ TextureImporter:
       bones: []
       spriteID: fb1d4da7547a81146a2ff677687f42d3
       internalID: -8377130690987618698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ooze
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6cbd7e1baeb42438e3a585c239d90f
+      internalID: -4829012903545646581
       vertices: []
       indices: 
       edges: []
