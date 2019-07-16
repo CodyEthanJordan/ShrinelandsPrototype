@@ -175,13 +175,13 @@ TextureImporter:
     second: cave_56
   - first:
       213: 6441568383294751788
-    second: cave_57
+    second: wallEdgeT
   - first:
       213: -1078962037741333557
     second: cave_58
   - first:
       213: 4158664816681632095
-    second: cave_59
+    second: wallCornerBR
   - first:
       213: 8970067459282299689
     second: waterAnticornerTR
@@ -214,16 +214,16 @@ TextureImporter:
     second: cave_69
   - first:
       213: -5811527082040612133
-    second: cave_70
+    second: wallCornerBL
   - first:
       213: 2559312776972346819
-    second: cave_71
+    second: wallEdgeB
   - first:
       213: -3061220365364064627
     second: cave_72
   - first:
       213: -4368128017131032598
-    second: cave_73
+    second: wallcornerBR
   - first:
       213: -9202565792775132868
     second: cave_74
@@ -439,7 +439,7 @@ TextureImporter:
     second: cave_144
   - first:
       213: 5679303739200814256
-    second: cave_145
+    second: wallWaterCornerBL
   - first:
       213: -2340082338413631796
     second: wallWaterB
@@ -448,7 +448,7 @@ TextureImporter:
     second: cave_147
   - first:
       213: 7624247021133855787
-    second: cave_148
+    second: wallwaterCornerBR
   - first:
       213: -4351779248650779744
     second: floor3
@@ -1243,8 +1243,8 @@ TextureImporter:
         y: 304
         width: 16
         height: 16
-      alignment: 9
-      pivot: {x: 21.990446, y: 6.08811}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2139,7 +2139,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_57
+      name: wallEdgeT
       rect:
         serializedVersion: 2
         x: 208
@@ -2181,7 +2181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_59
+      name: wallCornerBR
       rect:
         serializedVersion: 2
         x: 240
@@ -2412,7 +2412,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_70
+      name: wallCornerBL
       rect:
         serializedVersion: 2
         x: 192
@@ -2433,7 +2433,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_71
+      name: wallEdgeB
       rect:
         serializedVersion: 2
         x: 208
@@ -2475,7 +2475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_73
+      name: wallcornerBR
       rect:
         serializedVersion: 2
         x: 240
@@ -3987,7 +3987,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_145
+      name: wallWaterCornerBL
       rect:
         serializedVersion: 2
         x: 192
@@ -4050,7 +4050,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_148
+      name: wallwaterCornerBR
       rect:
         serializedVersion: 2
         x: 240
