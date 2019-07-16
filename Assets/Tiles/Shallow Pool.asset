@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: New Rule Tile
+  m_Script: {fileID: 11500000, guid: ec5d76534673e8443bce711fa96d2431, type: 3}
+  m_Name: Shallow Pool
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
+  m_DefaultSprite: {fileID: -4410258708472649330, guid: 41328707c8551bb4c8e7b8f97bb99d10,
+    type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []

@@ -29,8 +29,7 @@ namespace Assets.Scripts
         public AbilityPanelUI AbilityPanel;
         public CharacterPopupUI PopupPanel;
 
-        public UnityEngine.Tilemaps.Tile emptyTile;
-        public UnityEngine.Tilemaps.Tile wallTile;
+        public UnityEngine.Tilemaps.Tile[] Tiles;
 
 
         public GameObject characterPrefab;
@@ -174,14 +173,8 @@ namespace Assets.Scripts
                 for (int x = 0; x < DM.map.Width; x++)
                 {
                     var tile = DM.map.GetTile(x, y);
-                    if (tile.Passable)
-                    {
-                        tileMap.SetTile(new Vector3Int(x, DM.map.Height-y, 0), emptyTile);
-                    }
-                    else
-                    {
-                        tileMap.SetTile(new Vector3Int(x, DM.map.Height-y, 0), wallTile);
-                    }
+                    var unityTile = Tiles.First(t => t.name.Equals(tile.Name));
+                    tileMap.SetTile(new Vector3Int(x, DM.map.Height - y, 0), unityTile);
                 }
             }
         }
