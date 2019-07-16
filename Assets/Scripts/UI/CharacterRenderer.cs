@@ -11,10 +11,8 @@ namespace Assets.Scripts.UI
 {
     public class CharacterRenderer : MonoBehaviour
     {
-        public Sprite knightSprite;
-        public Sprite slimeSprite;
-        public Sprite slimelordSprite;
-
+        public Sprite[] CharacterSprites;
+   
         public Character CharacterRepresented;
 
         private SpriteRenderer sr;
@@ -27,22 +25,14 @@ namespace Assets.Scripts.UI
         public void RepresentCharacter(Character c)
         {
             this.CharacterRepresented = c;
-            switch(c.Class)
+            var sprite = CharacterSprites.FirstOrDefault(cs => cs.name.Equals(c.Class, StringComparison.OrdinalIgnoreCase));
+            if(sprite != null)
             {
-                case "Knight":
-                    sr.sprite = knightSprite;
-                    break;
-                case "Slime":
-                    sr.sprite = slimeSprite;
-                    break;
-                case "Slimelord":
-                    sr.sprite = slimelordSprite;
-                    break;
-
-                default:
-                    throw new NotImplementedException();
+                sr.sprite = sprite;
+                return;
             }
-
+            Debug.LogError("No sprite for " + c.Class);
+            sr.sprite = CharacterSprites[0];
         }
 
         internal void UpdatePosition(CombatManager cm)

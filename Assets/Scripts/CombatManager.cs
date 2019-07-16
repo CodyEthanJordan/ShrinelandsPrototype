@@ -29,7 +29,7 @@ namespace Assets.Scripts
         public AbilityPanelUI AbilityPanel;
         public CharacterPopupUI PopupPanel;
 
-        public UnityEngine.Tilemaps.Tile[] Tiles;
+        public UnityEngine.Tilemaps.TileBase[] Tiles;
 
 
         public GameObject characterPrefab;
