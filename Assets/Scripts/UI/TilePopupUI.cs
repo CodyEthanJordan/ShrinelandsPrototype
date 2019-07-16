@@ -16,6 +16,11 @@ namespace Assets.Scripts.UI
 
         private Image image;
 
+        private void Awake()
+        {
+            image = GetComponent<Image>();
+        }
+
         private void Start()
         {
             image = GetComponent<Image>();
