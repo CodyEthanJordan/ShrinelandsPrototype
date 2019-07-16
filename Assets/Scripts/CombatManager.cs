@@ -28,6 +28,7 @@ namespace Assets.Scripts
         public NameplateUI Nameplate;
         public AbilityPanelUI AbilityPanel;
         public CharacterPopupUI PopupPanel;
+        public TilePopupUI TilePopup;
 
         public UnityEngine.Tilemaps.TileBase[] Tiles;
 
@@ -53,6 +54,7 @@ namespace Assets.Scripts
         public Animator anim { get; private set; }
         public Character SelectedCharacter { get; internal set; }
         public Character MouseoverCharacter { get; internal set; }
+        public ShrinelandsTactics.World.Tile MouseoverTile { get; internal set; }
         public ShrinelandsTactics.Mechanics.Action SelectedAction { get; internal set; } 
 
         public event CharacterClickedEventHandler CharacterClicked;
@@ -227,23 +229,46 @@ namespace Assets.Scripts
             var hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
 
             //check for mouseover events
-            if(hits != null && hits.Any(h => h.collider.tag == "Character"))
+            if (hits != null)
             {
-                var hit = hits.First(h => h.collider.tag == "Character");
-                var guy = hit.collider.GetComponent<CharacterRenderer>().CharacterRepresented;
-                if(guy != MouseoverCharacter)
+                if (hits.Any(h => h.collider.tag == "Character"))
                 {
-                    PopupPanel.ShowCharacter(guy);
-                    MouseoverCharacter = guy;
+                    var hit = hits.First(h => h.collider.tag == "Character");
+                    var guy = hit.collider.GetComponent<CharacterRenderer>().CharacterRepresented;
+                    if (guy != MouseoverCharacter)
+                    {
+                        PopupPanel.ShowCharacter(guy);
+                        MouseoverCharacter = guy;
+                    }
                 }
-            }
-            else
-            {
-                if(MouseoverCharacter != null)
+                else
                 {
                     PopupPanel.Clear();
                     MouseoverCharacter = null;
                 }
+
+                if (hits.Any(h => h.collider.tag == "Tilemap"))
+                {
+                    var pos = UnityToShrinelandsPosition(mousePos);
+                    var tile = DM.map.GetTile(pos);
+                    if(tile != MouseoverTile)
+                    {
+                        TilePopup.Show(tile);
+                        MouseoverTile = tile;
+                    }
+                }
+                else
+                {
+                    MouseoverTile = null;
+                    TilePopup.Clear();
+                }
+            }
+            else
+            {
+                PopupPanel.Clear();
+                MouseoverCharacter = null;
+                MouseoverTile = null;
+                TilePopup.Clear();
             }
 
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
