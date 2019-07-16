@@ -108,7 +108,7 @@ namespace Assets.Scripts.Networking
                 case "DM":
                     DM = JsonConvert.DeserializeObject<DungeonMaster>(sr.ReadToEnd());
                     DM.SetupEvents();
-                    DM.data = GameData.CreateFromJson(TileJson.text, CharacterJson.text, TileJson.text);
+                    DM.data = GameData.CreateFromJson(TileJson.text, CharacterJson.text, ActionJson.text);
                     Debug.Log("Loaded level from server");
                     LoadCombatScene();
                     break;
