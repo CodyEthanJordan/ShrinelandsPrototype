@@ -25,9 +25,12 @@ namespace Assets.Scripts.FSM
             var name = cm.SelectedAction.Name;
             var pos = cm.UnityToShrinelandsPosition(e);
             var target = cm.DM.Characters.FirstOrDefault(c => c.Pos == pos);
-            List<string> targetString = new List<string>();
-            targetString.Add(target.Name);
-            var outcome = cm.DM.UseAbility(name, targetString); //TOOD: this is horrible
+            Guid targetGuid = Guid.Empty;
+            if(target != null)
+            {
+                targetGuid = target.ID;
+            }
+            var outcome = cm.DM.UseAbility(name, cm.SelectedCharacter.ID, targetGuid, pos);
             cm.nm.SendAction(outcome);
             Debug.Log(outcome.Message.ToString());
             cm.anim.SetTrigger("Deselect");

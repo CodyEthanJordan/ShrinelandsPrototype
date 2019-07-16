@@ -80,6 +80,7 @@ namespace Assets.Scripts
             DM.OnCardDrawn += OnCardDrawn;
             DM.OnTurnPassed += OnTurnPassed;
             DM.OnStatChanged += StatChanged;
+            DM.OnTileChanged += (s, p) => SetupTiles();
             SetupTiles();
             SetupUnits();
             Connected = true;

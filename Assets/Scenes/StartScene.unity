@@ -304,6 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Connected: 0
   IPInput: {fileID: 1637876903}
+  TileJson: {fileID: 4900000, guid: 775dd366af0792e4d9591d3f093f44d7, type: 3}
+  CharacterJson: {fileID: 4900000, guid: 8d22a3f0ebfb61e4b86a31effd002ded, type: 3}
+  ActionJson: {fileID: 4900000, guid: 73d7c484fa771a940a6bcf9a576b003a, type: 3}
 --- !u!4 &111008207
 Transform:
   m_ObjectHideFlags: 0
