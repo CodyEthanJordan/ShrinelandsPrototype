@@ -202,10 +202,10 @@ TextureImporter:
     second: cave_65
   - first:
       213: 6147505903521432198
-    second: cave_66
+    second: wallWaterL
   - first:
       213: -7816730375956098239
-    second: cave_67
+    second: wallWaterR
   - first:
       213: 6310108054928429293
     second: cave_68
@@ -316,10 +316,10 @@ TextureImporter:
     second: cave_103
   - first:
       213: -4805241856653229652
-    second: cave_104
+    second: floor9
   - first:
       213: -940435051262933254
-    second: cave_105
+    second: floor7
   - first:
       213: 6987058692476734212
     second: cave_106
@@ -361,7 +361,7 @@ TextureImporter:
     second: cave_118
   - first:
       213: 8920331598654476827
-    second: cave_119
+    second: floor8
   - first:
       213: 6572320143186874321
     second: cave_120
@@ -370,7 +370,7 @@ TextureImporter:
     second: cave_121
   - first:
       213: 2126086863450302733
-    second: cave_122
+    second: floor5
   - first:
       213: 7478989441173950303
     second: cave_123
@@ -385,7 +385,7 @@ TextureImporter:
     second: cave_126
   - first:
       213: 5130751397027870776
-    second: cave_127
+    second: Wall
   - first:
       213: -4754090180577454898
     second: cave_128
@@ -406,10 +406,10 @@ TextureImporter:
     second: cave_133
   - first:
       213: 2375502833112166463
-    second: cave_134
+    second: floor1
   - first:
       213: -4803313329244594469
-    second: cave_135
+    second: floor2
   - first:
       213: 855861279324272245
     second: waterSingle
@@ -418,7 +418,7 @@ TextureImporter:
     second: cave_137
   - first:
       213: 1974640688199314288
-    second: cave_138
+    second: floor6
   - first:
       213: -2227613280411681404
     second: cave_139
@@ -442,7 +442,7 @@ TextureImporter:
     second: cave_145
   - first:
       213: -2340082338413631796
-    second: cave_146
+    second: wallWaterB
   - first:
       213: 1653782145432050504
     second: cave_147
@@ -451,10 +451,10 @@ TextureImporter:
     second: cave_148
   - first:
       213: -4351779248650779744
-    second: cave_149
+    second: floor3
   - first:
       213: 363042928806829082
-    second: cave_150
+    second: floor4
   - first:
       213: 3444430189409708846
     second: cave_151
@@ -2328,7 +2328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_66
+      name: wallWaterL
       rect:
         serializedVersion: 2
         x: 128
@@ -2349,7 +2349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_67
+      name: wallWaterR
       rect:
         serializedVersion: 2
         x: 144
@@ -3126,7 +3126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_104
+      name: floor9
       rect:
         serializedVersion: 2
         x: 0
@@ -3147,7 +3147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_105
+      name: floor7
       rect:
         serializedVersion: 2
         x: 16
@@ -3441,7 +3441,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_119
+      name: floor8
       rect:
         serializedVersion: 2
         x: 0
@@ -3504,7 +3504,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_122
+      name: floor5
       rect:
         serializedVersion: 2
         x: 48
@@ -3609,7 +3609,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_127
+      name: Wall
       rect:
         serializedVersion: 2
         x: 128
@@ -3756,7 +3756,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_134
+      name: floor1
       rect:
         serializedVersion: 2
         x: 0
@@ -3777,7 +3777,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_135
+      name: floor2
       rect:
         serializedVersion: 2
         x: 16
@@ -3840,7 +3840,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_138
+      name: floor6
       rect:
         serializedVersion: 2
         x: 64
@@ -4008,7 +4008,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_146
+      name: wallWaterB
       rect:
         serializedVersion: 2
         x: 208
@@ -4071,7 +4071,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_149
+      name: floor3
       rect:
         serializedVersion: 2
         x: 0
@@ -4092,7 +4092,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_150
+      name: floor4
       rect:
         serializedVersion: 2
         x: 16

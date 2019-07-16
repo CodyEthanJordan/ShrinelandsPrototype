@@ -31,6 +31,7 @@ namespace UnityEngine
         }
 
         public Sprite m_DefaultSprite;
+        public string MatchingTile;
         public GameObject m_DefaultGameObject;
         public Tile.ColliderType m_DefaultColliderType = Tile.ColliderType.Sprite;
         public TileBase m_Self
@@ -236,7 +237,12 @@ namespace UnityEngine
             {
                 case TilingRule.Neighbor.This: return tile == m_Self;
                 case TilingRule.Neighbor.NotThis: return tile != m_Self;
-                case TilingRule.Neighbor.Wall: return tile.name == "Wall";
+                case TilingRule.Neighbor.Wall:
+                    if(tile == null)
+                    {
+                        return false;
+                    }
+                    return tile.name == MatchingTile;
             }
             return true;
         }
