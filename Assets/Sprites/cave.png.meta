@@ -22,10 +22,10 @@ TextureImporter:
     second: cave_5
   - first:
       213: 6331881677866438491
-    second: cave_6
+    second: wallAnticornerBR
   - first:
       213: 1193656332101533651
-    second: cave_7
+    second: wallAnticornerBL
   - first:
       213: -4361638148360769042
     second: cave_8
@@ -58,10 +58,10 @@ TextureImporter:
     second: cave_17
   - first:
       213: 7235807749562769067
-    second: cave_18
+    second: wallEdgeR
   - first:
       213: 5912124639312130766
-    second: cave_19
+    second: wallEdgeL
   - first:
       213: 7840702335472221307
     second: cave_20
@@ -154,7 +154,7 @@ TextureImporter:
     second: cave_49
   - first:
       213: 2313419830122661008
-    second: cave_50
+    second: wall
   - first:
       213: 6349480184285452005
     second: cave_51
@@ -169,10 +169,10 @@ TextureImporter:
     second: cave_54
   - first:
       213: -4367272493687772792
-    second: cave_55
+    second: wallAnticornerTR
   - first:
       213: -8981022199308917199
-    second: cave_56
+    second: wallCornerTL
   - first:
       213: 6441568383294751788
     second: wallEdgeT
@@ -181,7 +181,7 @@ TextureImporter:
     second: cave_58
   - first:
       213: 4158664816681632095
-    second: wallCornerBR
+    second: wallCornerTR
   - first:
       213: 8970067459282299689
     second: waterAnticornerTR
@@ -211,7 +211,7 @@ TextureImporter:
     second: cave_68
   - first:
       213: -8935336423071133856
-    second: cave_69
+    second: wallAnticornerTL
   - first:
       213: -5811527082040612133
     second: wallCornerBL
@@ -385,7 +385,7 @@ TextureImporter:
     second: cave_126
   - first:
       213: 5130751397027870776
-    second: Wall
+    second: asdf
   - first:
       213: -4754090180577454898
     second: cave_128
@@ -1068,7 +1068,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_6
+      name: wallAnticornerBR
       rect:
         serializedVersion: 2
         x: 96
@@ -1089,7 +1089,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_7
+      name: wallAnticornerBL
       rect:
         serializedVersion: 2
         x: 112
@@ -1320,7 +1320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_18
+      name: wallEdgeR
       rect:
         serializedVersion: 2
         x: 96
@@ -1341,7 +1341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_19
+      name: wallEdgeL
       rect:
         serializedVersion: 2
         x: 112
@@ -1992,7 +1992,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_50
+      name: wall
       rect:
         serializedVersion: 2
         x: 96
@@ -2097,7 +2097,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_55
+      name: wallAnticornerTR
       rect:
         serializedVersion: 2
         x: 176
@@ -2118,7 +2118,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_56
+      name: wallCornerTL
       rect:
         serializedVersion: 2
         x: 192
@@ -2181,7 +2181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wallCornerBR
+      name: wallCornerTR
       rect:
         serializedVersion: 2
         x: 240
@@ -2391,7 +2391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_69
+      name: wallAnticornerTL
       rect:
         serializedVersion: 2
         x: 176
@@ -3609,7 +3609,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall
+      name: asdf
       rect:
         serializedVersion: 2
         x: 128

@@ -16,7 +16,7 @@ MonoBehaviour:
     type: 3}
   MatchingTile: Floor
   m_DefaultGameObject: {fileID: 0}
-  m_DefaultColliderType: 1
+  m_DefaultColliderType: 2
   m_TilingRules:
   - m_Neighbors: 0000000001000000030000000100000001000000000000000100000000000000
     m_Sprites:

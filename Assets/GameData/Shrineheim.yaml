@@ -1,0 +1,13 @@
+# Test level file for game
+encounter_name: Shrineheim
+map_file: ShrineheimMap.png
+
+sides:
+ - Heros
+ - The Foe
+
+characters:
+ - name: Moelinda
+   class: Chalice Bearer
+   pos: 4 25
+   side: Heros
