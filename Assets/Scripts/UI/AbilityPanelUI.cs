@@ -42,6 +42,7 @@ namespace Assets.Scripts.UI
                 var button = Instantiate(ButtonPrefab, this.transform);
                 button.GetComponentInChildren<Text>().text = ability.Name;
                 button.GetComponent<Button>().onClick.AddListener(() => UseAction(ability.Name));
+
             }
             var deactivateButton = Instantiate(ButtonPrefab, this.transform);
             deactivateButton.GetComponentInChildren<Text>().text = "Deactivate";

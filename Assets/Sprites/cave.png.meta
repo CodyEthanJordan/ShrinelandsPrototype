@@ -283,7 +283,7 @@ TextureImporter:
     second: cave_92
   - first:
       213: -7666904325724380883
-    second: cave_93
+    second: Start
   - first:
       213: 8471304309426292380
     second: cave_94
@@ -2895,7 +2895,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cave_93
+      name: Start
       rect:
         serializedVersion: 2
         x: 64

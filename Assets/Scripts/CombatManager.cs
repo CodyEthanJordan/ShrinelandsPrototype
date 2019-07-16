@@ -26,6 +26,7 @@ namespace Assets.Scripts
         public Tilemap overlayMap;
         public UnityEngine.Tilemaps.Tile overlayTile;
         public NameplateUI Nameplate;
+        public ScorePanelUI ScorePanel;
         public AbilityPanelUI AbilityPanel;
         public CharacterPopupUI PopupPanel;
         public TilePopupUI TilePopup;
@@ -79,13 +80,21 @@ namespace Assets.Scripts
             this.nm = nm;
             DM.OnCharacterMoved += OnCharacterMoved;
             DM.OnCharacterCreated += OnCharacterCreated;
+            DM.OnCharacterDied += OnCharacterCreated;
             DM.OnCardDrawn += OnCardDrawn;
             DM.OnTurnPassed += OnTurnPassed;
             DM.OnStatChanged += StatChanged;
             DM.OnTileChanged += (s, p) => SetupTiles();
+            DM.OnPointScored += PointScored;
             SetupTiles();
             SetupUnits();
+            ScorePanel.ShowScore(DM.Sides);
             Connected = true;
+        }
+
+        private void PointScored(object sender, Guid e)
+        {
+            ScorePanel.ShowScore(DM.Sides);
         }
 
         private void StatChanged(object sender, ShrinelandsTactics.BasicStructures.Events.StatChangedEventArgs a)
@@ -104,7 +113,7 @@ namespace Assets.Scripts
             var go = Instantiate(DeckPrefab, canvas.transform);
             var dr = go.GetComponent<DeckRenderer>();
             dr.RenderDeck(a.deck);
-            StartCoroutine(dr.DrawCard(a.card.Name));
+            StartCoroutine(dr.DrawCard(a.cards.Select(c => c.Name).ToList()));
         }
 
         public void LoadEncounter()

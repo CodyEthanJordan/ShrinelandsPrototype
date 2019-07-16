@@ -12,21 +12,24 @@ namespace Assets.Scripts.UI
 {
     public class DeckRenderer : MonoBehaviour
     {
+        public GameObject ShuffleArea;
+        public GameObject DrawArea;
         public GameObject CardPrefab;
         public int ShuffledOverlap;
         public float ShuffleSpeed;
         public float SuspenseTime;
         public float WaitTime;
 
-        private HorizontalLayoutGroup hlg;
+        private GridLayoutGroup gl;
 
         private void Awake()
         {
-            hlg = GetComponent<HorizontalLayoutGroup>();
+            gl = ShuffleArea.GetComponent<GridLayoutGroup>();
         }
 
         private void Start()
         {
+
         }
 
         private void Update()
@@ -38,28 +41,31 @@ namespace Assets.Scripts.UI
             ClearDeck();
             foreach (var card in deck.Cards)
             {
-                var go = Instantiate(CardPrefab, this.transform);
+                var go = Instantiate(CardPrefab, ShuffleArea.transform);
                 var cr = go.GetComponent<CardRenderer>();
                 cr.RenderCard(card);
             }
         }
 
-        public IEnumerator DrawCard(string name)
+        public IEnumerator DrawCard(List<string> names)
         {
             yield return new WaitForSeconds(WaitTime);
-            Debug.Log("Drawing card " + name);
             yield return Shuffle();
 
-            var cr = GetComponentsInChildren<CardRenderer>().FirstOrDefault(c => c.NameText.text == name);
-            if(cr == null)
+            foreach (var name in names)
             {
-                Debug.LogError("Can't draw card " + name);
-                throw new ArgumentException("Can't draw " + name);
-            }
+                var cr = GetComponentsInChildren<CardRenderer>().FirstOrDefault(c => c.NameText.text == name);
+                if (cr == null)
+                {
+                    Debug.LogError("Can't draw card " + name);
+                    throw new ArgumentException("Can't draw " + name);
+                }
 
-            yield return new WaitForSeconds(SuspenseTime);
-            cr.transform.SetAsLastSibling();
-            cr.FlipOver();
+                yield return new WaitForSeconds(SuspenseTime);
+                cr.transform.SetParent(DrawArea.transform);
+                yield return new WaitForSeconds(SuspenseTime/2);
+                cr.FlipOver();
+            }
             yield return new WaitForSeconds(WaitTime);
             Destroy(this.gameObject);
         }
@@ -71,16 +77,23 @@ namespace Assets.Scripts.UI
                 cr.FlipOver();
             }
 
-            while(hlg.spacing > ShuffledOverlap)
+            var spacing = gl.spacing;
+            float t = 0;
+            while(t <= 1)
             {
-                hlg.spacing -= 30;
+                var newSpacing = Vector2.Lerp(spacing, -gl.cellSize, t);
+                t += 0.1f;
+
+                gl.spacing = newSpacing;
+
                 yield return new WaitForSeconds(ShuffleSpeed);
             }
+            gl.spacing = -gl.cellSize;
         }
 
         public void ClearDeck()
         {
-            foreach (Transform child in this.transform)
+            foreach (Transform child in ShuffleArea.transform)
             {
                 Destroy(child.gameObject);
             }

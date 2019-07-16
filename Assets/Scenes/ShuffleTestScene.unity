@@ -521,15 +521,5 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2612210701979802897, guid: d49164ec4d667ce4c93922e51c9a1fe0,
-        type: 3}
-      propertyPath: ShuffleSpeed
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2612210701979802897, guid: d49164ec4d667ce4c93922e51c9a1fe0,
-        type: 3}
-      propertyPath: SuspenseTime
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d49164ec4d667ce4c93922e51c9a1fe0, type: 3}
