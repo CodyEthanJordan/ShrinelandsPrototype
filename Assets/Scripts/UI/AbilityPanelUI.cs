@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
     public class AbilityPanelUI : MonoBehaviour
     {
+        public GameObject ButtonZone;
         public GameObject ButtonPrefab;
 
         private Character guy;
@@ -26,9 +28,10 @@ namespace Assets.Scripts.UI
             ClearButtons();
             this.guy = guy;
             this.cm = cm;
-            var button = Instantiate(ButtonPrefab, this.transform);
-            button.GetComponentInChildren<Text>().text = "Activate";
-            button.GetComponent<Button>().onClick.AddListener(ActivateGuy);
+            var go = Instantiate(ButtonPrefab, ButtonZone.transform);
+            go.GetComponentInChildren<Text>().text = "Activate";
+            var button = go.GetComponent<Button>();
+            button.onClick.AddListener(ActivateGuy);
         }
 
         public void ShowAbilities(CombatManager cm, Character guy)
@@ -39,19 +42,19 @@ namespace Assets.Scripts.UI
 
             foreach (var ability in guy.Actions)
             {
-                var button = Instantiate(ButtonPrefab, this.transform);
-                button.GetComponentInChildren<Text>().text = ability.Name;
-                button.GetComponent<Button>().onClick.AddListener(() => UseAction(ability.Name));
-
+                var go = Instantiate(ButtonPrefab, ButtonZone.transform);
+                go.GetComponentInChildren<Text>().text = ability.Name;
+                var button = go.GetComponent<Button>();
+                button.onClick.AddListener(() => UseAction(ability.Name));
             }
-            var deactivateButton = Instantiate(ButtonPrefab, this.transform);
+            var deactivateButton = Instantiate(ButtonPrefab, ButtonZone.transform);
             deactivateButton.GetComponentInChildren<Text>().text = "Deactivate";
             deactivateButton.GetComponent<Button>().onClick.AddListener(DeactivateGuy);
         }
 
         public void ClearButtons()
         {
-            foreach (Transform child in transform)
+            foreach (Transform child in ButtonZone.transform)
             {
                 GameObject.Destroy(child.gameObject);
             }

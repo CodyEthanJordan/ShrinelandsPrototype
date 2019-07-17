@@ -31,7 +31,6 @@ namespace Assets.Scripts.UI
         {
             TileName.text = "";
             Description.text = "";
-            image.enabled = false;
         }
 
         public void Show(Tile tile)

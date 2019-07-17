@@ -14,7 +14,6 @@ namespace Assets.Scripts.UI
         public GameObject TextPrefab;
         private void Start()
         {
-            Clear();
         }
 
         public void ShowScore(List<Side> sides)

@@ -209,7 +209,7 @@ namespace Assets.Scripts
             }
         }
 
-        // Update is called once per frame
+        private Vector3 MouseStart, MouseMove;
         void Update()
         {
             if(!Connected)
@@ -225,7 +225,7 @@ namespace Assets.Scripts
             camera.orthographicSize += Input.GetAxis("Mouse ScrollWheel") * CamZoomSpeed * Time.deltaTime;
             camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, 2, CamMaxZoom);
 
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if(Deselect != null)
                 {
