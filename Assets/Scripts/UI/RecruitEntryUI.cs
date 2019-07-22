@@ -21,11 +21,32 @@ namespace Assets.Scripts.UI
         public int Cost;
         public Character GuyRepresented;
 
+        private Image bg;
+
+        private void Awake()
+        {
+            bg = GetComponent<Image>();
+        }
+
+        public void Highlight()
+        {
+            bg.color = new Color(0, 30, 30);
+        }
+
+        public void Deselect()
+        {
+            bg.color = new Color(0, 0, 0, 0);
+        }
+
         public void Show(Character guy, int cost)
         {
             this.GuyRepresented = guy;
             this.Cost = cost;
 
+            ClassText.text = guy.Class;
+            CostText.text = cost.ToString();
+
+            Portrait.sprite = Sprites.GetSpriteByName(guy.Class);
         }
 
     }

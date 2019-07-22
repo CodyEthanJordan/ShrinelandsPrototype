@@ -6,24 +6,52 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Assets.Scripts.ScreenManagers;
 
 namespace Assets.Scripts.UI
 {
     public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        public Image Icon;
+        public Text Name;
+        public Text CostText;
+
+        public string Item;
+        public int Cost;
+
+        private ChapterhouseManager cm;
+        private Vector3 startingPos;
+        private bool validDrag;
+
+
+
+        private void Start()
+        {
+            cm = GameObject.Find("ChapterManager").GetComponent<ChapterhouseManager>();
+        }
+
+        public void ShowItem(string item, int cost)
+        {
+            this.Item = item;
+            this.Cost = cost;
+
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            startingPos = transform.position;
+            GetComponent<Image>().raycastTarget = false;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            transform.position = Input.mousePosition;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            GetComponent<Image>().raycastTarget = true;
+            transform.position = startingPos;
         }
     }
 }

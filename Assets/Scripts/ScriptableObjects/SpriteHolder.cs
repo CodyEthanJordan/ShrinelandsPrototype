@@ -11,5 +11,17 @@ namespace Assets.Scripts.ScriptableObjects
     public class SpriteHolder : ScriptableObject
     {
         public Sprite[] Sprites;
+
+        public Sprite GetSpriteByName(string name)
+        {
+            var sprite = Sprites.FirstOrDefault(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if(sprite == null)
+            {
+                Debug.LogError("No sprite for " + name);
+                return Sprites[0];
+            }
+
+            return sprite;
+        }
     }
 }
