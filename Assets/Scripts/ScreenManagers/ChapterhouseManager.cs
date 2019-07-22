@@ -18,6 +18,9 @@ namespace Assets.Scripts.ScreenManagers
 
         private RecruitEntryUI SelectedRecruit = null;
 
+        public int Manpower;
+        public int Requisition;
+
         private void Start()
         {
             ClearRecruits();
@@ -60,6 +63,9 @@ namespace Assets.Scripts.ScreenManagers
             var cost = new List<int>() { 3 };
 
             ShowRecruits(guys, cost);
+
+            Manpower = 20;
+            Requisition = 20;
         }
 
         public void ShowRecruits(List<Character> guys, List<int> cost)
