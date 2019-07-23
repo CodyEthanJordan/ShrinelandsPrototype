@@ -7,11 +7,13 @@ using UnityEngine;
 using ShrinelandsTactics;
 using ShrinelandsTactics.World;
 using Assets.Scripts.UI;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.ScreenManagers
 {
     public class ChapterhouseManager : MonoBehaviour
     {
+        public GraphicRaycaster GR;
         public GameObject RecruitList;
         public GameObject RecruitEntryPrefab;
         public GameObject ItemList;
@@ -36,6 +38,8 @@ namespace Assets.Scripts.ScreenManagers
 
         private void Update()
         {
+            GR.R
+            
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
             var hits = Physics.RaycastAll(mousePos, Vector2.zero);
