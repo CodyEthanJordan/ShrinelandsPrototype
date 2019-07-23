@@ -7,7 +7,19 @@ TextureImporter:
     second: Archeia_Icons_0
   - first:
       213: 412753502916132417
-    second: fruit
+    second: Fruit
+  - first:
+      213: 7716184950261828561
+    second: Archeia_Icons_1
+  - first:
+      213: 6561342988993089722
+    second: Archeia_Icons_2
+  - first:
+      213: -3914307830630713297
+    second: Longsword
+  - first:
+      213: -7927791454006651109
+    second: Provisions
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,7 +110,7 @@ TextureImporter:
         width: 24
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -111,7 +123,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fruit
+      name: Fruit
       rect:
         serializedVersion: 2
         x: 74
@@ -119,7 +131,7 @@ TextureImporter:
         width: 22
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,6 +139,90 @@ TextureImporter:
       bones: []
       spriteID: 93c6d1f64601ab84eaf80b31102249c0
       internalID: 412753502916132417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archeia_Icons_1
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 60
+        width: 26
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74cb291c1c0584f41930b91e8d911cf0
+      internalID: 7716184950261828561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archeia_Icons_2
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 24
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f64960bc834ac924da2022e73a311bc6
+      internalID: 6561342988993089722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Longsword
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64f2f3d2c216eec439b88c86ed7d9cd9
+      internalID: -3914307830630713297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Provisions
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 27
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2148809cb7e482479d7963aa39ea07a
+      internalID: -7927791454006651109
       vertices: []
       indices: 
       edges: []

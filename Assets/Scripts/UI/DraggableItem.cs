@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.Scripts.ScreenManagers;
+using ShrinelandsTactics.World;
+using Assets.Scripts.ScriptableObjects;
 
 namespace Assets.Scripts.UI
 {
@@ -16,13 +18,14 @@ namespace Assets.Scripts.UI
         public Text Name;
         public Text CostText;
 
-        public string Item;
+        public SpriteHolder Sprites;
+
+        public Item Item;
         public int Cost;
 
         private ChapterhouseManager cm;
         private Vector3 startingPos;
-        private bool validDrag;
-
+        public bool validDrag;
 
 
         private void Start()
@@ -30,22 +33,37 @@ namespace Assets.Scripts.UI
             cm = GameObject.Find("ChapterManager").GetComponent<ChapterhouseManager>();
         }
 
-        public void ShowItem(string item, int cost)
+        public void ShowItem(Item item, int cost)
         {
             this.Item = item;
             this.Cost = cost;
 
+            this.Name.text = item.Name;
+            this.CostText.text = cost.ToString();
+            this.Icon.sprite = Sprites.GetSpriteByName(item.Name);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if(cm.Requisition < Cost)
+            {
+                validDrag = false;
+                return;
+            }
+            else
+            {
+                validDrag = true;
+            }
             startingPos = transform.position;
             GetComponent<Image>().raycastTarget = false;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position = Input.mousePosition;
+            if(validDrag)
+            {
+                transform.position = Input.mousePosition;
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)

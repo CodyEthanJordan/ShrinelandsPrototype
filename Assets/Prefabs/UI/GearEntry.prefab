@@ -323,3 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 8682665318249320752}
+  Name: {fileID: 8682665318238909562}
+  CostText: {fileID: 8682665319590736909}
+  Sprites: {fileID: 11400000, guid: 42cf84ea717cee84da4f0f40beb71a6a, type: 2}
+  Cost: 0
+  validDrag: 0
