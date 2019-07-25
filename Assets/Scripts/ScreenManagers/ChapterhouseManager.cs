@@ -38,7 +38,6 @@ namespace Assets.Scripts.ScreenManagers
 
         private void Update()
         {
-            GR.R
             
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
