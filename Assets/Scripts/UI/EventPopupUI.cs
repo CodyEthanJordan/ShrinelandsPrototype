@@ -13,6 +13,7 @@ namespace Assets.Scripts.UI
     {
         public Text Title;
         public Text Body;
+        public Text Outcome;
         public Transform OptionsPanel;
         public GameObject OptionPrefab;
 
@@ -32,6 +33,9 @@ namespace Assets.Scripts.UI
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
             }
 
+            ClearOptions();
+            Outcome.enabled = false;
+
             tm = GameObject.Find("TravelManager").GetComponent<TravelManager>(); //TODO: is this evil?
         }
 
@@ -39,12 +43,18 @@ namespace Assets.Scripts.UI
         {
         }
 
-        public IEnumerator ShowOptions(IEnumerable<string> options)
+        private void ClearOptions()
         {
             foreach (Transform child in OptionsPanel)
             {
                 Destroy(child.gameObject);
             }
+        }
+
+        public IEnumerator ShowOptions(IEnumerable<string> options)
+        {
+            ClearOptions();
+            Outcome.enabled = false;
 
             int i = 0;
             foreach (var option in options)
@@ -53,7 +63,8 @@ namespace Assets.Scripts.UI
                 var text = go.GetComponentInChildren<Text>();
                 text.text = option;
                 var button = go.GetComponent<Button>();
-                button.onClick.AddListener(() => ChooseOption(i));
+                int o = i;
+                button.onClick.AddListener(() => ChooseOption(o));
                 i++; //TODO: does this fail for weird reasons? can never remember
             }
             yield return new WaitForEndOfFrame();
@@ -85,6 +96,13 @@ namespace Assets.Scripts.UI
                 }
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        public void ShowOutcome(string outcome)
+        {
+            ClearOptions();
+            Outcome.enabled = true;
+            this.Outcome.text = outcome;
         }
 
     }

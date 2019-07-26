@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.UI;
+using ShrinelandsTactics;
 using ShrinelandsTactics.World;
 using ShrinelandsTactics.World.Time;
 using System;
@@ -18,6 +19,21 @@ namespace Assets.Scripts
         public Parralaxer Background;
         public GameObject[] PartyMembers;
 
+        public TravelMaster TM;
+        public Encounter CurrentEncounter;
+
+        private void Start()
+        {
+            TM = new TravelMaster();
+
+            //need an event pipeline
+            TM.OnEncounterOutcome += EncounterResolved;
+        }
+
+        private void EncounterResolved(object sender, string e)
+        {
+            EventPopup.ShowOutcome(e);
+        }
 
         private void Update()
         {
@@ -26,6 +42,7 @@ namespace Assets.Scripts
                 //trigger event
                 var encounter = DebugData.GetMistWolfEncounter();
                 StartCoroutine(ShowEncounter(encounter));
+                CurrentEncounter = encounter;
             }
         }
 
@@ -45,7 +62,7 @@ namespace Assets.Scripts
 
         public void ChooseOption(int i)
         {
-
+            TM.ChooseOption(CurrentEncounter, i);
         }
 
         private void StopWalking()
