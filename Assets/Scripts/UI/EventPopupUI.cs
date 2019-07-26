@@ -14,6 +14,7 @@ namespace Assets.Scripts.UI
         public Text Title;
         public Text Body;
         public Text Outcome;
+        public Button CarryOnButton;
         public Transform OptionsPanel;
         public GameObject OptionPrefab;
 
@@ -26,15 +27,8 @@ namespace Assets.Scripts.UI
         private void Start()
         {
             rt = GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(0, rt.sizeDelta.y);
 
-            foreach (var text in GetComponentsInChildren<Text>())
-            {
-                text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
-            }
-
-            ClearOptions();
-            Outcome.enabled = false;
+            Close();
 
             tm = GameObject.Find("TravelManager").GetComponent<TravelManager>(); //TODO: is this evil?
         }
@@ -51,10 +45,16 @@ namespace Assets.Scripts.UI
             }
         }
 
+        public void CarryOn()
+        {
+            tm.CarryOn();
+        }
+
         public IEnumerator ShowOptions(IEnumerable<string> options)
         {
             ClearOptions();
             Outcome.enabled = false;
+            CarryOnButton.gameObject.SetActive(false);
 
             int i = 0;
             foreach (var option in options)
@@ -65,9 +65,23 @@ namespace Assets.Scripts.UI
                 var button = go.GetComponent<Button>();
                 int o = i;
                 button.onClick.AddListener(() => ChooseOption(o));
-                i++; //TODO: does this fail for weird reasons? can never remember
+                i++;
             }
             yield return new WaitForEndOfFrame();
+        }
+
+        internal void Close()
+        {
+            CarryOnButton.gameObject.SetActive(false);
+            foreach (var text in GetComponentsInChildren<Text>())
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+            }
+
+            rt.sizeDelta = new Vector2(0, rt.sizeDelta.y);
+            ClearOptions();
+            Outcome.enabled = false;
+
         }
 
         private void ChooseOption(int i)
@@ -102,6 +116,7 @@ namespace Assets.Scripts.UI
         {
             ClearOptions();
             Outcome.enabled = true;
+            CarryOnButton.gameObject.SetActive(true);
             this.Outcome.text = outcome;
         }
 

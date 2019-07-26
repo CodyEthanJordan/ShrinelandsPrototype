@@ -22,6 +22,13 @@ namespace Assets.Scripts
         public TravelMaster TM;
         public Encounter CurrentEncounter;
 
+        public float TimeBetweenEvents;
+
+        private float nextEventDraw = 1;
+        private float nighttime = float.PositiveInfinity;
+
+        private float previousSpeed;
+
         private void Start()
         {
             TM = new TravelMaster();
@@ -37,12 +44,16 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            float x = Time.time;
+            if(Time.time >= nextEventDraw)
             {
-                //trigger event
-                var encounter = DebugData.GetMistWolfEncounter();
-                StartCoroutine(ShowEncounter(encounter));
-                CurrentEncounter = encounter;
+                nextEventDraw = float.PositiveInfinity;
+                CurrentEncounter = TM.DrawEncounter();
+                StartCoroutine(ShowEncounter(CurrentEncounter));
+            }
+            else if(Time.time >= nighttime)
+            {
+
             }
         }
 
@@ -60,6 +71,13 @@ namespace Assets.Scripts
 
         }
 
+        internal void CarryOn()
+        {
+            EventPopup.Close();
+            StartWalking();
+            nextEventDraw = Time.time + TimeBetweenEvents;
+        }
+
         public void ChooseOption(int i)
         {
             TM.ChooseOption(CurrentEncounter, i);
@@ -67,10 +85,20 @@ namespace Assets.Scripts
 
         private void StopWalking()
         {
+            previousSpeed = Background.Speed;
             Background.Speed = 0;
             foreach (var go in PartyMembers)
             {
                 go.GetComponent<Animator>().SetTrigger("Stop");
+            }
+        }
+
+        private void StartWalking()
+        {
+            Background.Speed = previousSpeed;
+            foreach (var go in PartyMembers)
+            {
+                go.GetComponent<Animator>().SetTrigger("Walk");
             }
         }
     }
